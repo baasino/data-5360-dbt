@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: "Fact table recording point-of-sale transactions at Oliver's."
+    columns:
+      - name: sales_key
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        tests:
+          - not_null
+
+  - name: oliver_dim_customer
+    columns:
+      - name: customer_key
+        tests:
+          - unique
+          - not_null
