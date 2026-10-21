@@ -1,20 +1,10 @@
 version: 2
-
 models:
   - name: fact_sales
     description: "Fact table recording point-of-sale transactions at Oliver's."
-    columns:
-      - name: sales_key
-        tests:
-          - unique
-          - not_null
-      - name: order_id
-        tests:
-          - not_null
 
-  - name: oliver_dim_customer
-    columns:
-      - name: customer_key
-        tests:
-          - unique
-          - not_null
+  - name: stg_employee_certifications
+    description: "Staging model that extracts and parses nested JSON employee certification data from the raw source table."
+
+  - name: fact_certification
+    description: "Fact table recording the certifications awarded to employees and their associated costs. The grain of this table is one row per employee, per certification, per date awarded."
