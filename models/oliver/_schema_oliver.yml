@@ -1,7 +1,26 @@
 version: 2
+
 models:
   - name: fact_sales
     description: "Fact table recording point-of-sale transactions at Oliver's."
+    columns:
+      - name: sales_key
+        tests:
+          - unique
+          - not_null
+      - name: product_key
+        tests:
+          - relationships:
+              arguments:
+                to: ref('oliver_dim_product')
+                field: product_key
+      # Applying accepted_values to store_key as an example based on your sample.
+      # If your company has more than 5 stores, you may need to add those numbers to the list!
+      - name: store_key 
+        tests:
+          - accepted_values:
+              arguments:
+                values: [1, 2, 3, 4, 5]
 
   - name: stg_employee_certifications
     description: "Staging model that extracts and parses nested JSON employee certification data from the raw source table."
