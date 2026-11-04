@@ -1,0 +1,29 @@
+version: 2
+sources:
+  # 1. The PostgreSQL Source (Transactional DB)
+  - name: postgres_ecoessentials
+    database: group_project_db
+    schema: ecoessentials_transactional_db
+    tables:
+      - name: products
+        identifier: PRODUCT
+      - name: orders
+        identifier: ORDER
+        quoting:
+          identifier: true
+      - name: order_items
+        identifier: ORDER_LINE
+      - name: users
+        identifier: CUSTOMER
+      - name: campaigns
+        identifier: PROMOTIONAL_CAMPAIGN
+        
+  # 2. The Google Drive Source
+  - name: gdrive_ecoessentials
+    database: group_project_db
+    schema: ecoessentials
+    tables:
+      - name: email_events
+        identifier: MARKETING_EMAILS
+      - name: marketing_users
+        identifier: MARKETING_EMAILS
